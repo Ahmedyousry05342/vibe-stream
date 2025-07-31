@@ -1,5 +1,5 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./components/Layout"; // 👈 New layout component
+import { createBrowserRouter, RouterProvider} from "react-router-dom";
+import Layout from "./components/Layout";
 import Login from "./components/Login";
 import Browse from "./components/Browse";
 
@@ -7,7 +7,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />, // 👈 Shared layout
+      element: <Layout />,
       children: [
         {
           path: "/",
@@ -21,7 +21,12 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  
+
+  return (
+      <RouterProvider router={router} />
+    
+  );
 }
 
 export default App;
