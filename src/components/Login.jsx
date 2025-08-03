@@ -80,7 +80,7 @@ function Body() {
 
   return (
     <div
-      className="relative w-full h-screen bg-cover bg-center"
+      className="relative w-full h-[38rem] md:h-screen bg-cover bg-center"
       style={{
         backgroundImage: `url(${BG_IMG})`,
       }}
@@ -89,7 +89,7 @@ function Body() {
       <div className="absolute inset-0 bg-black opacity-70"></div>
 
       {/* Login Box */}
-      <div className="absolute top-1/2 left-1/2 w-11/12 max-w-md transform -translate-x-1/2 -translate-y-1/2 rounded-md shadow-lg z-10">
+      <div className="absolute top-70 md:top-1/2 left-1/2 w-11/12 max-w-md transform -translate-x-1/2 -translate-y-1/2 rounded-md shadow-lg z-10">
         <div className="bg-black/70 text-white p-10 rounded-md">
           <h2 className="text-3xl font-bold mb-6">
             {isSignIn ? "Login" : "Sign Up"}

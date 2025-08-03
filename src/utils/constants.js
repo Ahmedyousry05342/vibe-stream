@@ -6,6 +6,7 @@ export const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNzExMGY0MTAzNTMzNTg1NWFlNDQwNzdiOWQ1OWMxMyIsIm5iZiI6MTc1Mzg5NTQxMS45NTUwMDAyLCJzdWIiOiI2ODhhNTFmMzA2ZTM3MWEzOTA1YWUzM2MiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.VwQGpiFNRd5CtG77tWsi26miKLnib6uxur66mzfLnLU'
+    Authorization: 'Bearer ' + import.meta.env.VITE_TMDB_KEY
   }
 };
+export const GEMINI_API = import.meta.env.VITE_GEMINI_KEY;

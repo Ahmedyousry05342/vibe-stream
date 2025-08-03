@@ -1,16 +1,30 @@
+import useFetchPopulor from "../hooks/usePopulorMovies";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import MainComponent from "./MainComponent";
 import SecondryComponent from "./secondryComponent";
+import useTopRated from "../hooks/useTopRated";
+import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import { useSelector } from "react-redux";
+import GptPage from "./GptPage";
 
 
 function Browse() {
   useNowPlayingMovies()
+  useFetchPopulor()
+  useTopRated()
+  useUpcomingMovies()
+
+  const gptButtonStatus = useSelector((store)=>store.gpt.gptButton)
+
+  
   
   return (
-    <div className="">
+    gptButtonStatus ? 
+    (<GptPage/>) :
+    (<div>
       <MainComponent/>
       <SecondryComponent/>
-    </div>
+    </div>)
   )
 }
 
