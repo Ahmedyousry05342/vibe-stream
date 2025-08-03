@@ -154,8 +154,7 @@ function Body() {
           </div>
 
           <p className="text-xs text-gray-500 mt-4">
-            This page is protected by Google reCAPTCHA to ensure you're not a
-            bot.{" "}
+            This is personal project, this project do not associate itself to any company.{" "}
             <a href="#" className="text-blue-500 hover:underline">
               Learn more.
             </a>
