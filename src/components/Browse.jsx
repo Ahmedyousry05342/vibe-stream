@@ -1,7 +1,7 @@
 import useFetchPopulor from "../hooks/usePopulorMovies";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import MainComponent from "./MainComponent";
-import SecondryComponent from "./secondryComponent";
+import SecondryComponent from "./SecondryComponent";
 import useTopRated from "../hooks/useTopRated";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import { useSelector } from "react-redux";
