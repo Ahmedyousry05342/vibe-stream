@@ -14,7 +14,7 @@ function GptPage() {
     <div>
     <div>
         <img className=" w-full h-screen object-cover bg-center -z-20 fixed" src={BG_IMG} alt="background poster" />
-        <div className="fixed inset-0 bg-black opacity-70"></div>
+        <div className="fixed -z-10 inset-0 bg-black opacity-70"></div>
     </div>
     <SearchBar/>
 

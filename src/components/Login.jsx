@@ -80,7 +80,7 @@ function Body() {
 
   return (
     <div
-      className="relative w-full h-[38rem] md:h-screen bg-cover bg-center"
+      className="relative w-full h-screen md:h-screen bg-cover bg-center"
       style={{
         backgroundImage: `url(${BG_IMG})`,
       }}
