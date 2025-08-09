@@ -9,7 +9,6 @@ function MovieCard({ poster, id }) {
   const imageUrl = "https://image.tmdb.org/t/p/w500" + poster;
 
   const handleClick = (e) => {
-    // console.log(e.target.id)
     const movieId = e.target.id;
     const getVideos = async () => {
       const data = await fetch(

@@ -340,3 +340,26 @@
   cursor: pointer;
   font-weight: bold;
 }
+
+
+.masked-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: transparent;
+    background-image: url('https://media.istockphoto.com/id/2077902181/photo/shine-metallic-construction.webp?a=1&s=612x612&w=0&k=20&c=FM5RrWlQd--5FjnJarh5HU-J8XCVwZtLGvR1mhGZIsA='); 
+    background-size: 200%; /* Enlarged for smooth animation */
+    background-position: 0 50%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animate-background 5s infinite alternate linear;
+}
+
+@keyframes animate-background {
+    0% {
+        background-position: 0 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}

@@ -9,16 +9,15 @@ const useFetchTrailer = ({id}) => {
     const trailer = useSelector((store)=>store.movie.trailer)
     
   const getVideos = async () => {
-    const data = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
-      API_OPTIONS
-    );
-    const json = await data.json();
-
-    const filterData = json.results.filter((data) => data.type === "Trailer");
-    const trailer = filterData.length ? filterData[0] : json.results[0];
+  try {
+    const response = await fetch(`http://localhost:3000/api/trailer/${id}`); // Change this to your hosted backend URL later
+    const trailer = await response.json();
     dispatch(addTrailer(trailer));
-  };
+  } catch (error) {
+    console.error("Error fetching trailer:", error.message);
+  }
+};
+
   
   useEffect(() => {
     !trailer && getVideos();

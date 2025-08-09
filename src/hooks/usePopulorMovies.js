@@ -8,8 +8,7 @@ const useFetchPopulor = () => {
   const dispatch = useDispatch();
   const getPopulorMovies = async () => {
     const data = await fetch(
-      'https://api.themoviedb.org/3/movie/popular?page=1',
-      API_OPTIONS
+      'http://localhost:3000/populor'
     );
     const json = await data.json();
     

@@ -57,7 +57,7 @@ function AiSuggestedCard({ poster, id }) {
       </div>
 
       {showModal && (
-        <div className="">
+        <div>
           <TrailerModal
             trailerKey={videoKey} // ✅ FIXED
             onClose={() => {

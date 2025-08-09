@@ -4,9 +4,10 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useEffect } from "react";
-import { LOGO } from "../utils/constants";
 import '../App.css'
 import { toggleGptButton } from "../utils/GptSlice";
+import movieImg from "../assets/Movie.png"
+import signOutLogo from "../assets/signout.png"
 
 function Header() {
   const dispatch = useDispatch();
@@ -40,9 +41,9 @@ function Header() {
     dispatch(toggleGptButton())
   }
   return (
-    <header className="w-full  md:bg-transparent bg-black flex justify-between items-center px-5 md:px-20 py-8 md:absolute z-40 ">
+    <header className="w-full md:bg-transparent bg-black flex justify-between items-center px-5 md:px-20 py-8 md:absolute z-40 ">
       <div>
-        <img className="h-6 md:h-10" src={LOGO} alt="" />
+        <img className="h-6 md:h-16" src={movieImg} alt="" />
       </div>
       {user && (
         <div className="flex relative items-center gap-2">
@@ -71,7 +72,7 @@ function Header() {
             onClick={handleSignOut}
             className=" text-white font-semibold cursor-pointer"
           >
-            <img className="w-10" src="https://cdn-icons-png.freepik.com/256/12635/12635060.png?semt=ais_white_label" alt="" />
+            <img className="w-10" src={signOutLogo} alt="" />
           </p>
         </div>
       )}

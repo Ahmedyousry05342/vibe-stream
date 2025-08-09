@@ -2,42 +2,44 @@ import { useEffect, useRef } from "react";
 import { API_OPTIONS, GEMINI_API } from "../utils/constants";
 import { GoogleGenAI } from "@google/genai";
 import { useDispatch, useSelector } from "react-redux";
-import { addFetchedMovies, addSearchedMovies, addUserInput, setLoading} from "../utils/GptSlice";
+import '../App.css'
+import {
+  addFetchedMovies,
+  addSearchedMovies,
+  addUserInput,
+  setLoading,
+} from "../utils/GptSlice";
 
 function SearchBar() {
   const inputText = useRef();
   const dispatch = useDispatch();
   const movies = useSelector((store) => store.gpt.searchedMovies);
 
-
-
   const handleSearch = async () => {
+    if (!inputText.current.value) return;
     dispatch(setLoading(true));
     const ai = new GoogleGenAI({ apiKey: GEMINI_API });
 
     const prompt = `You are a top-tier AI-powered movie recommendation engine.
-    Based on the user's mood or preferences, suggest a list of 10 highly-rated and widely loved movies.
+    Based on the user's mood or preferences, suggest a list of highly-rated and widely loved movies.
     User input: "${inputText.current.value}"
     Return only the names of the movies, separated by commas.
-    If user enters specific movie like "raaz , 3 idiots or hera pheri" , is hera pheri chosen 1st movie give hera pheri then suggest 9 relevent movies like phir hera pheri or same movies of that genre or name or actor.
-    like if someone enters sultaan or sultan understand they may be referring to populor movie of salman khan spellings may be sometimes wrong but give result like in this case sultan`;
+    If user enters specific movie like "raaz , 3 idiots or hera pheri" , is hera pheri chosen 1st movie give hera pheri then suggest it's other parts then multiple relevent movies like phir hera pheri or same movies of that genre or name or actor.
+    like if someone enters sultaan or sultan understand they may be referring to populor movie of salman khan spellings may be sometimes wrong but give result like in this case sultan, and for every movie with similar spellings or variations, provide the correct title and suggest relevant alternatives.Also consider the user's mood and preferences when suggesting movies,
+    if user enters a movie with alot of parts, consider suggesting the entire series or related movies in the same franchise.Don't give irrelevant suggestions, movies would be fetched from TMDB so keep in mind also if user enters something like "final destination" show all the parts of that populor movie series.`;
 
     const response = await ai.models.generateContent({
       model: "gemini-2.5-flash",
       contents: prompt,
     });
-    dispatch(addSearchedMovies((response.text)?.split(",")));
-    dispatch(addUserInput(inputText.current.value))
+    dispatch(addSearchedMovies(response.text?.split(",")));
+    dispatch(addUserInput(inputText.current.value));
   };
-
-
-
 
   useEffect(() => {
     if (!movies) return;
 
     const fetchMovieDetails = async () => {
-
       const searchMovieTMDB = async (movie) => {
         const data = await fetch(
           `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
@@ -50,49 +52,57 @@ function SearchBar() {
       const promiseArray = movies.map((movie) => searchMovieTMDB(movie));
       const tmdbResults = await Promise.all(promiseArray);
       dispatch(setLoading(false));
-      dispatch(addFetchedMovies(tmdbResults))
-
+      dispatch(addFetchedMovies(tmdbResults));
     };
 
     fetchMovieDetails();
   }, [movies]);
 
   return (
-    <div className="flex justify-center items-center gap-4 py-30">
-      <div className="relative group">
-        <div
-          className="
+    <div className="flex justify-center items-center gap-10 py-30 flex-col">
+      <h1 className="text-white text-[2rem] font-bold flex items-center gap-2">
+        Introducing Our
+        {/* <span className="text-[#00ff00]">AI Powered Smart Search</span> */} 
+        <div className="masking-container">
+          <h1 className="masked-text">Smart AI Search</h1>
+        </div>
+      </h1>
+
+      <div className="flex gap-4">
+        <div className="relative group">
+          <div
+            className="
             absolute -inset-1 rounded-lg
-            bg-gradient-to-r from-red-600 to-pink-500
+            bg-gradient-to-r from-[#00ff00] to-green-500
             opacity-30 blur-lg
             transition-opacity duration-300
             group-focus-within:opacity-70
             pointer-events-none
           "
-        />
+          />
 
-        <input
-          type="text"
-          ref={inputText}
-          placeholder="What do you feel like watching?"
-          className="
+          <input
+            type="text"
+            ref={inputText}
+            placeholder="What do you feel like watching?"
+            className="
             relative z-10
             w-70 lg:w-96 px-5 py-3
             rounded-lg bg-black text-white placeholder-gray-500
             border border-gray-700
-            focus:outline-none focus:border-red-500
+            focus:outline-none focus:border-[#00ff00]
             transition-colors duration-300
           "
-        />
-      </div>
+          />
+        </div>
 
-      {/* NEON-PULSE BUTTON */}
-      <button
-        onClick={handleSearch}
-        className="
+        {/* NEON-PULSE BUTTON */}
+        <button
+          onClick={handleSearch}
+          className="
           relative px-3 py-2 md:px-8 md:py-3 overflow-hidden rounded-lg
-          bg-gradient-to-r from-red-600 to-pink-500
-          text-white font-semibold
+          bg-gradient-to-r from-[#00ff00] to-green-500
+          text-black font-semibold
           cursor-pointer
           before:absolute before:inset-0
           before:bg-gradient-to-r before:from-pink-400 before:to-red-600
@@ -101,9 +111,10 @@ function SearchBar() {
           hover:scale-105
           transition-transform duration-300 ease-in-out
         "
-      >
-        Search
-      </button>
+        >
+          Search
+        </button>
+      </div>
     </div>
   );
 }

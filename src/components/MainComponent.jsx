@@ -1,20 +1,26 @@
-import Video from './Video'
-import Title from './Title'
+import Video from './Video';
+import Title from './Title';
 import { useSelector } from 'react-redux';
 
 function MainComponent() {
-    const movie = useSelector(store=>store.movie.nowPlayingMovies)
-    if(!movie) return;
-    const mainMovie = movie[0]
+  const movie = useSelector((store) => store.movie.nowPlayingMovies);
 
-    const {original_title,overview,id} = mainMovie;
+  // If no movie or it's an empty array, avoid rendering
+  if (!movie || movie.length === 0) return null; // or a loading spinner
+
+  const mainMovie = movie[0];
+
+  // Optional safety check
+  if (!mainMovie) return null;
+
+  const { original_title, overview, id } = mainMovie;
+
   return (
     <>
-    <Title title={original_title} overview={overview}/>
-    <Video id={id}/>
+      <Title title={original_title} overview={overview} />
+      <Video id={id} />
     </>
-    
-  )
+  );
 }
 
-export default MainComponent
+export default MainComponent;

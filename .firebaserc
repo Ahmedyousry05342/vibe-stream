@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "netflix-gpt-rehan1"
-  }
+    "default": "vibestream-ec6c6"
+  },
+  "targets": {},
+  "etags": {}
 }

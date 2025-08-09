@@ -13,7 +13,7 @@ function GptSuggestions() {
     
   return (
     <>
-    <h1 className="text-white relative text-lg md:text-3xl -top-20 px-5 md:font-bold mb-6 ">Results Showing For : <span className="text-yellow-300">{userInput}</span></h1>
+    <h1 className="text-white relative text-lg md:text-3xl -top-20 px-5 md:font-semibold mb-6 ">Results Showing For : <span className="text-[#00ff00]">{userInput}</span></h1>
     <div className="grid grid-cols-2 lg:grid-cols-5 px-5 pb-5 relative -top-20 gap-6">
         {searchedMovies.map((movies,index)=>{
           return (
