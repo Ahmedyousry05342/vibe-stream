@@ -140,31 +140,31 @@ app.get("/api/trailer/:id", async (req, res) => {
 
 
 
-// app.get("/api/trailer/:id", async (req, res) => {
-//   const movieId = req.params.id;
+app.get("/api/trailer/:id", async (req, res) => {
+  const movieId = req.params.id;
 
-//   try {
-//     const response = await fetch(
-//       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
-//           "Content-Type": "application/json;charset=utf-8",
-//         },
-//       }
-//     );
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.TMDB_KEY}`,
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      }
+    );
 
-//     if (!response.ok) {
-//       throw new Error(`TMDB API error: ${response.statusText}`);
-//     }
+    if (!response.ok) {
+      throw new Error(`TMDB API error: ${response.statusText}`);
+    }
 
-//     const data = await response.json();
-//     res.json(data);
-//   } catch (err) {
-//     console.error("Error fetching trailer:", err);
-//     res.status(500).json({ error: "Failed to fetch trailer" });
-//   }
-// });
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching trailer:", err);
+    res.status(500).json({ error: "Failed to fetch trailer" });
+  }
+});
 
 app.get("/api/search/:query", async (req, res) => {
   const { query } = req.params;
