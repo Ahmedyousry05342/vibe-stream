@@ -10,7 +10,7 @@ const useFetchTrailer = ({id}) => {
     
   const getVideos = async () => {
   try {
-    const response = await fetch(`http://localhost:3000/api/trailer/${id}`); // Change this to your hosted backend URL later
+    const response = await fetch(`https://vibe-stream-r7q8.onrender.com/api/trailer/${id}`); // Change this to your hosted backend URL later
     const trailer = await response.json();
     dispatch(addTrailer(trailer));
   } catch (error) {

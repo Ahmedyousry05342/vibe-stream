@@ -10,7 +10,6 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { BG_IMG } from "../utils/constants";
 
 function Body() {
   const [isSignIn, setisSignIn] = useState(true);

@@ -21,7 +21,6 @@ const TrailerModal = ({ trailerKey, onClose }) => {
             allow="autoplay; encrypted-media; fullscreen"
             allowFullScreen
             title="Movie Trailer"
-            frameBorder="0"
           />
         </div>
 

@@ -8,7 +8,7 @@ const useFetchPopulor = () => {
   const dispatch = useDispatch();
   const getPopulorMovies = async () => {
     const data = await fetch(
-      'http://localhost:3000/populor'
+      'https://vibe-stream-r7q8.onrender.com/populor'
     );
     const json = await data.json();
     

@@ -8,7 +8,7 @@ const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
   const getNowPlayingMovies = async () => {
     const data = await fetch(
-      'http://localhost:3000/nowplaying'
+      'https://vibe-stream-r7q8.onrender.com/nowplaying'
     );
     const json = await data.json();
     

@@ -8,7 +8,7 @@ const useUpcomingMovies = () => {
   const dispatch = useDispatch();
   const getUpcoming = async () => {
     const data = await fetch(
-      'http://localhost:3000/upcoming'
+      'https://vibe-stream-r7q8.onrender.com/upcoming'
     );
     const json = await data.json();
     

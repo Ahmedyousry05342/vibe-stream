@@ -15,7 +15,7 @@ const API_KEY_TMDB_LG = process.env.VITE_TMDB_KEY
 
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 app.use(express.json()); // ✅ This was missing
@@ -122,5 +122,5 @@ app.get("/api/trailer/:id", async (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running`);
 });
