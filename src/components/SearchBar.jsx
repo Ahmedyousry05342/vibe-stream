@@ -9,6 +9,7 @@ import {
   addUserInput,
   setLoading,
 } from "../utils/GptSlice";
+import { Search } from "lucide-react";
 
 function SearchBar() {
   const inputText = useRef();
@@ -68,7 +69,7 @@ function SearchBar() {
         </div>
       </h1>
 
-      <div className="flex gap-4 mx-4">
+      <div className="flex gap-3 mx-4">
         <div className="relative group">
           <div
             className="
@@ -99,7 +100,7 @@ function SearchBar() {
         <button
           onClick={handleSearch}
           className="
-          relative px-3 py-2 md:px-8 md:py-3 overflow-hidden rounded-lg
+          relative px-3 py-1 md:py-3 overflow-hidden rounded-full
           bg-gradient-to-r from-[#00ff00] to-green-500
           text-black font-semibold
           cursor-pointer
@@ -109,9 +110,10 @@ function SearchBar() {
           before:animate-pulse
           hover:scale-105
           transition-transform duration-300 ease-in-out
+          
         "
         >
-          Search
+          <Search />
         </button>
       </div>
     </div>

@@ -4,17 +4,16 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useEffect } from "react";
-import '../App.css'
+import "../App.css";
 import { toggleGptButton } from "../utils/GptSlice";
-import movieImg from "../assets/Movie.png"
-import signOutLogo from "../assets/signout.png"
+import movieImg from "../assets/Movie.png";
+import signOutLogo from "../assets/signout.png";
 
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
-  const gptButtonStatus = useSelector((store)=>store.gpt.gptButton);
-
+  const gptButtonStatus = useSelector((store) => store.gpt.gptButton);
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
@@ -37,23 +36,22 @@ function Header() {
       .catch((error) => {});
   };
 
-  const handleGptButton =() => {
-    dispatch(toggleGptButton())
-  }
+  const handleGptButton = () => {
+    dispatch(toggleGptButton());
+  };
   return (
     <header className="w-full md:bg-transparent bg-black flex justify-between items-center px-5 md:px-20 py-8 md:absolute z-40 ">
       <div>
-        <img className="h-6 md:h-16" src={movieImg} alt="" />
+        <img className="h-9 md:h-16" src={movieImg} alt="" />
       </div>
       {user && (
         <div className="flex relative items-center gap-2">
           <p className="font-semibold text-white hidden md:inline">
-            Welcome{" "}{user.displayName}
-          
+            Welcome {user.displayName}
           </p>
           <button className="uiverse" onClick={handleGptButton}>
             <div className="wrapper">
-              <span>{gptButtonStatus?"Browse":"GPT"}</span>
+              <span>{gptButtonStatus ? "Browse" : "GPT"}</span>
               <div className="circle circle-12"></div>
               <div className="circle circle-11"></div>
               <div className="circle circle-10"></div>
@@ -70,9 +68,13 @@ function Header() {
           </button>
           <p
             onClick={handleSignOut}
-            className=" text-white font-semibold cursor-pointer"
+            className="text-white font-semibold cursor-pointer p-2 border-2 border-transparent rounded-full transition-all duration-200 ease-out hover:border-green-400/50 hover:bg-green-400/10 hover:scale-105 active:scale-95 active:bg-red-500/20 group"
           >
-            <img className="w-10" src={signOutLogo} alt="" />
+            <img
+              className="w-10 transition-all duration-200 ease-out group-hover:brightness-110 group-active:brightness-90"
+              src={signOutLogo}
+              alt="Sign Out"
+            />
           </p>
         </div>
       )}
