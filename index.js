@@ -2,34 +2,40 @@ import express from "express";
 import axios from "axios";
 import cors from "cors";
 import dotenv from "dotenv";
-import axiosRetry from "axios-retry";
+import axiosRetry from 'axios-retry';
 
-dotenv.config();
 axiosRetry(axios, { retries: 3 });
 
+
+
+dotenv.config(); // ✅ Load .env values
+
 const API_KEY = process.env.VITE_TMDB_API_KEY;
-const TMDB_BEARER = process.env.TMDB_API_KEY; // For Authorization header
+const API_KEY_TMDB_LG = process.env.VITE_TMDB_KEY
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+
+app.use(express.json()); // ✅ This was missing
+
 app.use(cors());
 
-// Default route
 app.get("/", (req, res) => {
   res.send("Welcome to my API");
 });
 
-// Movie routes
 app.get("/nowplaying", async (req, res) => {
   try {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`
     );
-    res.json(response.data);
+    
+    res.json(response.data); // ✅ send the data properly here
+
   } catch (error) {
-    console.error("Error fetching movies:", error.message);
+    console.error("Error fetching movies:", error.message); // log the real error
     res.status(500).json({ error: "Failed to fetch movie data" });
   }
 });
@@ -39,9 +45,11 @@ app.get("/populor", async (req, res) => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
     );
-    res.json(response.data);
+    
+    res.json(response.data); // ✅ send the data properly here
+
   } catch (error) {
-    console.error("Error fetching movies:", error.message);
+    console.error("Error fetching movies:", error.message); // log the real error
     res.status(500).json({ error: "Failed to fetch movie data" });
   }
 });
@@ -51,9 +59,11 @@ app.get("/toprated", async (req, res) => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`
     );
-    res.json(response.data);
+    
+    res.json(response.data); // ✅ send the data properly here
+
   } catch (error) {
-    console.error("Error fetching movies:", error.message);
+    console.error("Error fetching movies:", error.message); // log the real error
     res.status(500).json({ error: "Failed to fetch movie data" });
   }
 });
@@ -63,14 +73,73 @@ app.get("/upcoming", async (req, res) => {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`
     );
-    res.json(response.data);
+    
+    res.json(response.data); // ✅ send the data properly here
+
   } catch (error) {
-    console.error("Error fetching movies:", error.message);
+    console.error("Error fetching movies:", error.message); // log the real error
     res.status(500).json({ error: "Failed to fetch movie data" });
   }
 });
 
-// ✅ Single clean trailer route
+
+app.get("/api/trailer/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US&api_key=${API_KEY}`
+    );
+
+    const videos = response.data.results;
+    const trailer = videos.find((vid) => vid.type === "Trailer") || videos[0];
+
+    res.json(trailer);
+  } catch (error) {
+    console.error("Error fetching trailer:", error.message);
+    res.status(500).json({ error: "Failed to fetch trailer" });
+  }
+});
+
+// Add this route to your existing server.js
+// app.get("/api/search/:movieName", async (req, res) => {
+//   const { movieName } = req.params;
+  
+//   try {
+//     const response = await axios.get(
+//       `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieName)}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`
+//     );
+    
+//     res.json(response.data);
+//   } catch (error) {
+//     console.error("Error searching movie:", error.message);
+//     res.status(500).json({ error: "Failed to search movie" });
+//   }
+// });
+
+app.get("/api/trailer/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/videos`,
+      {
+        params: { language: "en-US", api_key: process.env.TMDB_API_KEY },
+      }
+    );
+
+    const videos = response.data.results;
+    const trailer = videos.find((vid) => vid.type === "Trailer") || videos[0];
+
+    res.json(trailer);
+  } catch (error) {
+    console.error("Error fetching trailer:", error.message);
+    res.status(500).json({ error: "Failed to fetch trailer" });
+  }
+});
+
+
+
 app.get("/api/trailer/:id", async (req, res) => {
   const movieId = req.params.id;
 
@@ -79,7 +148,7 @@ app.get("/api/trailer/:id", async (req, res) => {
       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
       {
         headers: {
-          Authorization: `Bearer ${TMDB_BEARER}`,
+          Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
           "Content-Type": "application/json;charset=utf-8",
         },
       }
@@ -92,20 +161,21 @@ app.get("/api/trailer/:id", async (req, res) => {
     const data = await response.json();
     res.json(data);
   } catch (err) {
-    console.error("Error fetching trailer:", err.message);
+    console.error("Error fetching trailer:", err);
     res.status(500).json({ error: "Failed to fetch trailer" });
   }
 });
 
-// Search route
 app.get("/api/search/:query", async (req, res) => {
   const { query } = req.params;
+
   try {
     const response = await axios.get(
       `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
         query
       )}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`
     );
+
     res.json(response.data);
   } catch (error) {
     console.error("Error fetching search results:", error.message);
@@ -113,6 +183,11 @@ app.get("/api/search/:query", async (req, res) => {
   }
 });
 
+
+
+
+
+
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running`);
 });
