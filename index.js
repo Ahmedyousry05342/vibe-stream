@@ -101,21 +101,6 @@ app.get("/api/trailer/:id", async (req, res) => {
   }
 });
 
-// Add this route to your existing server.js
-// app.get("/api/search/:movieName", async (req, res) => {
-//   const { movieName } = req.params;
-  
-//   try {
-//     const response = await axios.get(
-//       `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(movieName)}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`
-//     );
-    
-//     res.json(response.data);
-//   } catch (error) {
-//     console.error("Error searching movie:", error.message);
-//     res.status(500).json({ error: "Failed to search movie" });
-//   }
-// });
 
 app.get("/api/trailer/:id", async (req, res) => {
   const { id } = req.params;
@@ -140,9 +125,38 @@ app.get("/api/trailer/:id", async (req, res) => {
 
 
 
-app.get("/api/trailer/:id", async (req, res) => {
-  const movieId = req.params.id;
+// app.get("/api/trailer/:id", async (req, res) => {
+//   const movieId = req.params.id;
 
+//   try {
+//     const response = await fetch(
+//       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
+//       {
+//         headers: {
+//           Authorization: `Bearer ${process.env.TMDB_KEY}`,
+//           "Content-Type": "application/json;charset=utf-8",
+//         },
+//       }
+//     );
+
+//     if (!response.ok) {
+//       throw new Error(`TMDB API error: ${response.statusText}`);
+//     }
+
+//     const data = await response.json();
+//     res.json(data);
+//   } catch (err) {
+//     console.error("Error fetching trailer:", err);
+//     res.status(500).json({ error: "Failed to fetch trailer" });
+//   }
+// });
+
+
+// 3️⃣ Using Bearer token
+
+
+app.get("/api/trailer/bearer/:id", async (req, res) => {
+  const movieId = req.params.id;
   try {
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
@@ -161,10 +175,11 @@ app.get("/api/trailer/:id", async (req, res) => {
     const data = await response.json();
     res.json(data);
   } catch (err) {
-    console.error("Error fetching trailer:", err);
+    console.error("Error fetching trailer with Bearer:", err.message);
     res.status(500).json({ error: "Failed to fetch trailer" });
   }
 });
+
 
 app.get("/api/search/:query", async (req, res) => {
   const { query } = req.params;

@@ -15,7 +15,7 @@ function AiSuggestedCard({ poster, id }) {
     }
 
     try {
-      const response = await fetch(`/api/trailer/${movieId}`);
+      const response = await fetch(`/api/trailer/bearer/${movieId}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
