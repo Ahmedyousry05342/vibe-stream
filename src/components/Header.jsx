@@ -45,10 +45,12 @@ function Header() {
         <img className="h-9 md:h-16" src={movieImg} alt="" />
       </div>
       {user && (
-        <div className="flex relative items-center gap-2">
+        <div className="flex relative items-center gap-0 md:gap-2">
           <p className="font-semibold text-white hidden md:inline">
             Welcome {user.displayName}
           </p>
+
+
           <button className="uiverse" onClick={handleGptButton}>
             <div className="wrapper">
               <span>{gptButtonStatus ? "Browse" : "GPT"}</span>
@@ -66,6 +68,8 @@ function Header() {
               <div className="circle circle-1"></div>
             </div>
           </button>
+
+
           <p
             onClick={handleSignOut}
             className="text-white font-semibold cursor-pointer p-2 border-2 border-transparent rounded-full transition-all duration-200 ease-out hover:border-green-400/50 hover:bg-green-400/10 hover:scale-105 active:scale-95 active:bg-red-500/20 group"
