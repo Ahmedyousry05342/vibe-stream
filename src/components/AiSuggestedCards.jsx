@@ -8,13 +8,12 @@ function AiSuggestedCard({ poster, id }) {
   const [showModal, setShowModal] = useState(false);
 
   const handleClick = (e) => {
-    const movieId = e.target.id;
+    const id = e.target.id;
 
     const getVideos = async () => {
       try {
         const data = await fetch(
-          `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-          API_OPTIONS
+          `https://vibe-stream-production.up.railway.app/api/trailer/${id}`
         );
         const json = await data.json();
 
