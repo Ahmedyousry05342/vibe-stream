@@ -8,7 +8,7 @@ const useTopRated = () => {
   const dispatch = useDispatch();
   const getTopRated = async () => {
     const data = await fetch(
-      'https://vibe-stream-r7q8.onrender.com/toprated'
+      'https://vibe-stream-production.up.railway.app/toprated'
     );
     const json = await data.json();
     

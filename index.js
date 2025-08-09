@@ -117,6 +117,28 @@ app.get("/api/trailer/:id", async (req, res) => {
 //   }
 // });
 
+app.get("/api/trailer/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/movie/${id}/videos`,
+      {
+        params: { language: "en-US", api_key: process.env.TMDB_API_KEY },
+      }
+    );
+
+    const videos = response.data.results;
+    const trailer = videos.find((vid) => vid.type === "Trailer") || videos[0];
+
+    res.json(trailer);
+  } catch (error) {
+    console.error("Error fetching trailer:", error.message);
+    res.status(500).json({ error: "Failed to fetch trailer" });
+  }
+});
+
+
 
 
 
