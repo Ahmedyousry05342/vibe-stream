@@ -43,7 +43,7 @@ function SearchBar() {
       const searchMovieTMDB = async (movie) => {
         // ✅ Updated to call backend instead of TMDB directly
         const data = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/api/search/${encodeURIComponent(movie)}`
+          `${import.meta.env.VITE_BACKEND_URL}api/search/${encodeURIComponent(movie)}`
           // `https://localhost:3000/api/search/${encodeURIComponent(movie)}`
         );
         const json = await data.json();
