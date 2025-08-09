@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { API_OPTIONS, GEMINI_API } from "../utils/constants";
+import { GEMINI_API } from "../utils/constants";
 import { GoogleGenAI } from "@google/genai";
 import { useDispatch, useSelector } from "react-redux";
 import '../App.css'
@@ -41,9 +41,10 @@ function SearchBar() {
 
     const fetchMovieDetails = async () => {
       const searchMovieTMDB = async (movie) => {
+        // ✅ Updated to call backend instead of TMDB directly
         const data = await fetch(
-          `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
-          API_OPTIONS
+          `${import.meta.env.VITE_BACKEND_URL}/api/search/${encodeURIComponent(movie)}`
+          // `https://localhost:3000/api/search/${encodeURIComponent(movie)}`
         );
         const json = await data.json();
         return json;
@@ -60,15 +61,14 @@ function SearchBar() {
 
   return (
     <div className="flex justify-center items-center gap-10 py-30 flex-col">
-      <h1 className="text-white text-[2rem] font-bold flex items-center gap-2">
+      <h1 className="text-white md:text-[2rem]  font-bold flex items-center gap-2">
         Introducing Our
-        {/* <span className="text-[#00ff00]">AI Powered Smart Search</span> */} 
         <div className="masking-container">
           <h1 className="masked-text">Smart AI Search</h1>
         </div>
       </h1>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 mx-4">
         <div className="relative group">
           <div
             className="
@@ -87,7 +87,7 @@ function SearchBar() {
             placeholder="What do you feel like watching?"
             className="
             relative z-10
-            w-70 lg:w-96 px-5 py-3
+            w-full lg:w-96 px-5 py-3
             rounded-lg bg-black text-white placeholder-gray-500
             border border-gray-700
             focus:outline-none focus:border-[#00ff00]
@@ -96,7 +96,6 @@ function SearchBar() {
           />
         </div>
 
-        {/* NEON-PULSE BUTTON */}
         <button
           onClick={handleSearch}
           className="

@@ -138,6 +138,23 @@ app.get("/api/trailer/:id", async (req, res) => {
   }
 });
 
+app.get("/api/search/:query", async (req, res) => {
+  const { query } = req.params;
+
+  try {
+    const response = await axios.get(
+      `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+        query
+      )}&include_adult=false&language=en-US&page=1&api_key=${API_KEY}`
+    );
+
+    res.json(response.data);
+  } catch (error) {
+    console.error("Error fetching search results:", error.message);
+    res.status(500).json({ error: "Failed to fetch movies" });
+  }
+});
+
 
 
 
