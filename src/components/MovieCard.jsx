@@ -11,7 +11,7 @@ function MovieCard({ poster, id }) {
   const handleClick = async () => {
   try {
     const response = await fetch(
-      `https://vibe-stream-production.up.railway.app/api/trailer/${id}`
+      `${import.meta.env.VITE_BACKEND_URL}api/trailer/${id}`
     );
     const trailer = await response.json();
 
