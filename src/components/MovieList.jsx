@@ -1,5 +1,5 @@
 import MovieCard from "./MovieCard";
-import '../App.css'  // or whatever file contains your .hide-scrollbar styles
+import '../App.css' 
 
 
 function MovieList({ title, list=[] }) {

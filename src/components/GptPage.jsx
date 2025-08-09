@@ -1,5 +1,4 @@
 import ShimmerUi from "./ShimmerUi"
-import { BG_IMG } from "../utils/constants"
 import GptSuggestions from "./GptSuggestions"
 import SearchBar from "./SearchBar"
 import { useSelector } from "react-redux";

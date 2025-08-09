@@ -60,8 +60,8 @@ function SearchBar() {
   }, [movies]);
 
   return (
-    <div className="flex justify-center items-center gap-10 py-30 flex-col">
-      <h1 className="text-white md:text-[2rem]  font-bold flex items-center gap-2">
+    <div className="flex justify-center items-center gap-10 pt-10 pb-30 md:pt-30 flex-col">
+      <h1 className="text-white text-xl md:text-[2rem]  font-bold flex items-center gap-2">
         Introducing Our
         <div className="masking-container">
           <h1 className="masked-text">Smart AI Search</h1>

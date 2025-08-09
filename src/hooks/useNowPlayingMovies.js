@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { API_OPTIONS } from "../utils/constants";
 import { addNowPlayingMovies } from "../utils/movieSlice";
 import { useEffect } from "react";
 
@@ -8,7 +7,7 @@ const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
   const getNowPlayingMovies = async () => {
     const data = await fetch(
-      'https://vibe-stream-production.up.railway.app/nowplaying'
+      `${import.meta.env.VITE_BACKEND_URL}nowplaying`
     );
     const json = await data.json();
     

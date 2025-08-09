@@ -4,12 +4,10 @@ import { X } from "lucide-react";
 const TrailerDetails = ({ onClose }) => {
   const movie = useSelector((store) => store.movie.nowPlayingMovies);
 
-  // If no movie or it's an empty array, avoid rendering
   if (!movie || movie.length === 0) return null;
 
   const mainMovie = movie[0];
 
-  // Optional safety check
   if (!mainMovie) return null;
 
   const { original_title, overview, poster_path, release_date, vote_average } = mainMovie;

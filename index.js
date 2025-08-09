@@ -11,16 +11,22 @@ axiosRetry(axios, { retries: 3 });
 dotenv.config(); // ✅ Load .env values
 
 const API_KEY = process.env.VITE_TMDB_API_KEY;
-const API_KEY_TMDB_LG = process.env.VITE_TMDB_KEY
+
+
+
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-app.use(express.json()); // ✅ This was missing
+app.use(express.json()); 
 
-app.use(cors());
+app.use(cors({
+  origin: "https://vibestream-ec6c6.web.app"
+}));
+
+
 
 app.get("/", (req, res) => {
   res.send("Welcome to my API");
@@ -123,62 +129,6 @@ app.get("/api/trailer/:id", async (req, res) => {
   }
 });
 
-
-
-// app.get("/api/trailer/:id", async (req, res) => {
-//   const movieId = req.params.id;
-
-//   try {
-//     const response = await fetch(
-//       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${process.env.TMDB_KEY}`,
-//           "Content-Type": "application/json;charset=utf-8",
-//         },
-//       }
-//     );
-
-//     if (!response.ok) {
-//       throw new Error(`TMDB API error: ${response.statusText}`);
-//     }
-
-//     const data = await response.json();
-//     res.json(data);
-//   } catch (err) {
-//     console.error("Error fetching trailer:", err);
-//     res.status(500).json({ error: "Failed to fetch trailer" });
-//   }
-// });
-
-
-// 3️⃣ Using Bearer token
-
-
-// app.get("/api/trailer/bearer/:id", async (req, res) => {
-//   const movieId = req.params.id;
-//   try {
-//     const response = await fetch(
-//       `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${process.env.TMDB_KEY}`,
-//           "Content-Type": "application/json;charset=utf-8",
-//         },
-//       }
-//     );
-
-//     if (!response.ok) {
-//       throw new Error(`TMDB API error: ${response.statusText}`);
-//     }
-
-//     const data = await response.json();
-//     res.json(data);
-//   } catch (err) {
-//     console.error("Error fetching trailer with Bearer:", err.message);
-//     res.status(500).json({ error: "Failed to fetch trailer" });
-//   }
-// });
 
 
 app.get("/api/search/:query", async (req, res) => {

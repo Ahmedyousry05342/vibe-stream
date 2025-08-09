@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { API_OPTIONS } from "../utils/constants";
 import { useEffect } from "react";
 import { addUpcomingMovies } from "../utils/movieSlice";
 
@@ -8,7 +7,7 @@ const useUpcomingMovies = () => {
   const dispatch = useDispatch();
   const getUpcoming = async () => {
     const data = await fetch(
-      'https://vibe-stream-production.up.railway.app/upcoming'
+      `${import.meta.env.VITE_BACKEND_URL}upcoming`
     );
     const json = await data.json();
     

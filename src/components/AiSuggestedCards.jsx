@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { API_OPTIONS } from "../utils/constants";
 import TrailerModal from "./TrailerModel";
+import { poster_constant } from "../utils/constants";
 
 function AiSuggestedCard({ poster, id }) {
-  const imageUrl = "https://image.tmdb.org/t/p/w500" + poster;
+  const imageUrl = poster_constant + poster;
   const [videoKey, setVideoKey] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
@@ -23,13 +23,6 @@ function AiSuggestedCard({ poster, id }) {
           return;
         }
 
-        // const filterData = json.filter((data) => data.type === "Trailer");
-        // const trailer = filterData.length ? filterData[0] : json.results[0];
-
-        // if (!trailer || !trailer.key) {
-        //   alert("No valid trailer key found.");
-        //   return;
-        // }
 
         setVideoKey(json.key.trim());
         setShowModal(true);
@@ -44,9 +37,9 @@ function AiSuggestedCard({ poster, id }) {
 
   return (
     <>
-      <div onClick={handleClick}>
+      <div onClick={handleClick} className="flex justify-center">
         <img
-          className="object-cover cursor-pointer"
+          className="min-w-40 object-cover rounded-lg cursor-pointer"
           src={imageUrl}
           id={id}
           alt="movie poster"
@@ -56,9 +49,9 @@ function AiSuggestedCard({ poster, id }) {
       {showModal && (
         <div>
           <TrailerModal
-            trailerKey={videoKey} // ✅ FIXED
+            trailerKey={videoKey}
             onClose={() => {
-              setVideoKey(null); // ✅ FIXED from setTrailerKey
+              setVideoKey(null); 
               setShowModal(false);
             }}
           />

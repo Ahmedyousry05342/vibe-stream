@@ -1,5 +1,5 @@
 import AiSuggestedCard from "./AiSuggestedCards";
-import '../App.css'  // or whatever file contains your .hide-scrollbar styles
+import '../App.css'  
 
 
 function AiSuggestedMovie({ title, list }) {

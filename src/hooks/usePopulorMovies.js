@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { API_OPTIONS } from "../utils/constants";
 import { addPopulorMovies } from "../utils/movieSlice";
 import { useEffect } from "react";
 
@@ -8,7 +7,7 @@ const useFetchPopulor = () => {
   const dispatch = useDispatch();
   const getPopulorMovies = async () => {
     const data = await fetch(
-      'https://vibe-stream-production.up.railway.app/populor'
+      `${import.meta.env.VITE_BACKEND_URL}populor`
     );
     const json = await data.json();
     

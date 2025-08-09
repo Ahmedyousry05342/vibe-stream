@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { API_OPTIONS } from "../utils/constants";
 import TrailerModal from "./TrailerModel";
 
 function MovieCard({ poster, id }) {
@@ -40,9 +39,9 @@ function MovieCard({ poster, id }) {
       {showModal && (
         <div className="">
           <TrailerModal
-            trailerKey={videoKey} // ✅ FIXED
+            trailerKey={videoKey}
             onClose={() => {
-              setVideoKey(null); // ✅ FIXED from setTrailerKey
+              setVideoKey(null);
               setShowModal(false);
             }}
           />
