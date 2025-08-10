@@ -1,127 +1,60 @@
-VibeStream
-VibeStream is an AI-powered streaming platform designed to revolutionize how users discover movies. Leveraging GPT and natural language processing, VibeStream enables advanced, multilingual, and context-aware search capabilities — making movie browsing intuitive, personalized, and fun.
+# VibeStream
 
-Features
-AI-Powered Search: Find movies using natural language queries, character names, complex descriptions, or multiple languages.
+AI-powered streaming platform with natural language, multilingual search, and smart recommendations.
 
-Multilingual Support: Search movies in English, Hindi, Spanish, and more.
+---
 
-Responsive UI: Sleek design with smooth animations, glassmorphism effects, and mobile-first responsiveness.
+## Features
 
-Firebase Authentication: Secure user sign-up/sign-in.
+- GPT-powered advanced search by character, description, or language  
+- Multilingual queries (English, Hindi, Spanish, etc.)  
+- Responsive UI with animations and glassmorphism  
+- Firebase Authentication (Sign up / Sign in)  
+- Browse Now Playing, Popular, Top Rated, Upcoming movies  
+- Movie trailers via backend API  
+- Secure routing and mobile-first design  
 
-Movie Browsing: Beautifully designed movie cards showcasing current, popular, top-rated, and upcoming movies.
+---
 
-Smart Recommendations: Context-aware suggestions based on user queries.
+## Tech Stack
 
-Robust Backend: Express.js server deployed on Railway, integrating TMDB API with retry and error handling.
+- **Frontend:** React.js, Redux Toolkit, Tailwind CSS, React Router  
+- **Backend:** Node.js, Express, Axios, axios-retry  
+- **Hosting & Auth:** Firebase (frontend), Railway (backend)  
 
-Protected Routes & Seamless Navigation: Powered by React Router.
+---
 
-Tech Stack
-Frontend: React.js, Redux Toolkit, Tailwind CSS, React Router, Lucide React Icons
+## API Endpoints
 
-Backend: Node.js, Express.js, Axios, axios-retry, CORS
+- `GET /nowplaying` - Current movies  
+- `GET /popular` - Popular movies  
+- `GET /toprated` - Top rated movies  
+- `GET /upcoming` - Upcoming movies  
+- `GET /api/trailer/:id` - Movie trailer  
+- `GET /api/search/:query` - Search movies  
 
-Authentication & Hosting: Firebase
+---
 
-Deployment: Firebase Hosting (frontend), Railway (backend)
+## Setup
 
-Getting Started
-Prerequisites
-Node.js (v14 or later)
+1. Clone repo  
+2. Add `.env` with `VITE_TMDB_API_KEY`  
+3. Install dependencies in frontend & backend  
+4. Run backend (`node index.js`)  
+5. Run frontend (`npm run dev`)  
 
-Firebase CLI (for hosting)
+---
 
-TMDB API key (You can get one from The Movie Database)
+## Future Plans
 
-Setup
-Clone the repository:
+- User profiles & watchlists  
+- Social features & chat  
+- Enhanced personalized recommendations  
 
-bash
-Copy
-Edit
-git clone https://github.com/yourusername/vibestream.git
-cd vibestream
-Create a .env file in the backend directory and add your TMDB API key:
-
-ini
-Copy
-Edit
-VITE_TMDB_API_KEY=your_tmdb_api_key_here
-Install dependencies:
-
-Frontend:
-
-bash
-Copy
-Edit
-cd frontend
-npm install
-Backend:
-
-bash
-Copy
-Edit
-cd backend
-npm install
-Run the backend server locally:
-
-bash
-Copy
-Edit
-node index.js
-(Make sure to update index.js with your actual backend filename if different)
-
-Run the frontend app locally:
-
-bash
-Copy
-Edit
-cd frontend
-npm run dev
-Usage
-Use the search bar to find movies by character names, movie descriptions, or multilingual queries.
-
-Browse through sections like Now Playing, Popular, Top Rated, and Upcoming movies.
-
-Watch trailers fetched via the backend API.
-
-Sign up or log in securely using Firebase Authentication.
-
-API Endpoints (Backend)
-GET /nowplaying — Fetches currently playing movies
-
-GET /popular — Fetches popular movies
-
-GET /toprated — Fetches top-rated movies
-
-GET /upcoming — Fetches upcoming movies
-
-GET /api/trailer/:id — Fetches trailer for a specific movie
-
-GET /api/search/:query — Searches movies by query string
+---
 
 
-Challenges & Learnings
-Implemented GPT-powered search with natural language understanding.
+## Contact
 
-Built multilingual search support and character-to-movie mapping algorithms.
-
-Overcame SPA routing and hosting challenges with Firebase and Railway.
-
-Optimized backend API requests with retry logic and error handling.
-
-Future Improvements
-Add user profiles and watchlists.
-
-Integrate real-time chat or social features for movie discussions.
-
-Expand recommendation system using user behavior and preferences.
-
-Support TV shows and documentaries.
-
-
-Contact
-Created by Mohammad Rehan - mohdrehan9122@gmail.com
-GitHub: https://github.com/yourusername/vibestream
+Mohammad Rehan - mohdrehan@gmail.com
+Live Link - https://vibestream-ec6c6.web.app
