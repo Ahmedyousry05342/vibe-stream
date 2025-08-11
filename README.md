@@ -1,12 +1,60 @@
-# React + Vite
+# VibeStream
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AI-powered streaming platform with natural language, multilingual search, and smart recommendations.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- GPT-powered advanced search by character, description, or language  
+- Multilingual queries (English, Hindi, Spanish, etc.)  
+- Responsive UI with animations and glassmorphism  
+- Firebase Authentication (Sign up / Sign in)  
+- Browse Now Playing, Popular, Top Rated, Upcoming movies  
+- Movie trailers via backend API  
+- Secure routing and mobile-first design  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+- **Frontend:** React.js, Redux Toolkit, Tailwind CSS, React Router  
+- **Backend:** Node.js, Express, Axios, axios-retry  
+- **Hosting & Auth:** Firebase (frontend), Railway (backend)  
+
+---
+
+## API Endpoints
+
+- `GET /nowplaying` - Current movies  
+- `GET /popular` - Popular movies  
+- `GET /toprated` - Top rated movies  
+- `GET /upcoming` - Upcoming movies  
+- `GET /api/trailer/:id` - Movie trailer  
+- `GET /api/search/:query` - Search movies  
+
+---
+
+## Setup
+
+1. Clone repo  
+2. Add `.env` with `VITE_TMDB_API_KEY`  
+3. Install dependencies in frontend & backend  
+4. Run backend (`node index.js`)  
+5. Run frontend (`npm run dev`)  
+
+---
+
+## Future Plans
+
+- User profiles & watchlists  
+- Social features & chat  
+- Enhanced personalized recommendations  
+
+---
+
+
+## Contact
+
+Mohammad Rehan - mohdrehan@gmail.com
+Live Link - https://vibestream-ec6c6.web.app
